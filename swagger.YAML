@@ -1,0 +1,223 @@
+swagger: "2.0"
+
+info:
+  description: "REST API for students and users"
+  version: "1.0.0"
+  title: "Student Database REST API"
+
+schemes: 
+  - http
+
+host: localhost:3000
+
+basePath: "/"
+
+paths:
+  /auth/register:
+    post:
+      summary: "Register a new user"
+      description: "Register a new user"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        201:
+          description: 201 Success
+          schema:
+            type: object
+            items:
+        401:
+          description: 401 Unauthorized
+          schema:
+            type: object
+            items:
+        500:
+          description: 500 Internal Server Error
+          schema:
+            type: object
+            items:    
+
+  /auth/login:
+    post:
+      summary: "Login to a user account"
+      description: "Login to a user account"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: 200 Success
+          schema:
+            type: object
+            items:
+        401:
+          description: 401 Unauthorized
+          schema:
+            type: object
+            items:
+        500:
+          description: 500 Internal Server Error
+          schema:
+            type: object
+            items:
+
+      
+/students:
+    summary: Gets all of the student data.
+    get:
+      description: Retrieves all the student information from the database
+      operationId: getStudents
+      responses:
+        200:
+          description: 200 Success
+          content:
+            application/json:
+
+    summary: adds a new student
+    post:
+      description: adds a new student to the postgres database
+      operationId: addStudent
+      requestBody:
+        description: A new student object
+        content:
+          application/json:
+      responses:
+        201:
+        description: 201 Success
+          content:
+            text/plain; charset=utf-8:
+      tags:
+        - New Student
+
+/students/:id:
+    summary: Gets a specific student ID.
+    get:
+      description: Gets a specific student's data based on ID.
+      operationId: getStudentByID
+      responses:
+        200:
+          description: 200 Success
+          content:
+            application/json:
+
+    summary: Deletes a specific student ID.
+    delete:
+      description: Deletes a specific student's data based on ID from the database.
+      operationId: removeStudent
+      responses:
+        200:
+          description: 200 Success
+
+  /students/name/:id
+
+    summary: Update the name of a student.
+    put:
+      description:This operation updates the name of a student with a matching id from
+        the database
+      operationId: updateStudentName
+      parameters:
+        - name: id
+          in: path
+          description: Student Id.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A state string
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+            content:
+              text/plain; charset=utf-8:
+                examples:
+                  Message:
+                    value: Success
+            description: Success
+        '400':
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                Error:
+                  value: Invalid Argument
+          description: Invalid Argument Provided
+      tags:
+        - Update Student Name
+
+  /students/email/:id
+
+    summary: Update the email of a student.
+    put:
+      description:This operation updates the email of a student with a matching id from
+        the database
+      operationId: updateStudentEmail
+      parameters:
+        - name: id
+          in: path
+          description: student id.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A state string
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+            content:
+              text/plain; charset=utf-8:
+                examples:
+                  Message:
+                    value: Success
+            description: Success
+        '400':
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                Error:
+                  value: Invalid Argument
+          description: Invalid Argument Provided
+      tags:
+        - Update Student Email
+
+  /students/age/:id
+
+    summary: Update the age of a student.
+    put:
+      description:This operation updates the age of a student with a matching id from
+        the database
+      operationId: updateStudentAge
+      parameters:
+        - name: id
+          in: path
+          description: student id.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A state string
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+            content:
+              text/plain; charset=utf-8:
+                examples:
+                  Message:
+                    value: Success
+            description: Success
+        '400':
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                Error:
+                  value: Invalid Argument
+          description: Invalid Argument Provided
+      tags:
+        - Update Student Age
